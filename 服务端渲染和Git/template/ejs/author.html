@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./jq/1.jq"></script>
+    <style>
+        h3{
+            display: inline-block;
+        }
+        .rt {
+            width: 100%;
+            text-align: center;
+            margin: 0;
+            overflow: hidden;
+        }
+        .rt p{
+            width: 50%;
+           float: left;
+            background-color: #cccccc;
+            padding: 0;
+            margin: 0;
+            border: 1px solid pink;
+            box-sizing: border-box;
+        }
+        nav{
+            background-color: #ffffff;
+            text-align: center;
+        }
+        .user{
+            text-align: center;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+     <div class="wrap">
+            <nav>用户信息</nav>
+            <div class="user">
+                <p><%=data.loginname%></p>
+                <img src="<%=data.avatar_url%>" alt="">
+                <p style="padding:0;margin: 0;">
+                    <span><%=data.create_at.substr(0,10)%></span>
+                    <span><%=data.create_at.substring(11,16)%></span>
+                    <span> 积分：<%=data.score%></span>
+                </p>
+            </div>
+    
+                <div class="rt"> 
+                    <p class="rectent">最近回复</p>
+                    <p class="fabu">最近发布</p>
+                </div> 
+               <div class="content">
+                    <% data.recent_replies.forEach(item=>{%>
+                        <div class="replay">
+                            <img src="<%=item.author.avatar_url%>" alt="">
+                            <h3><%=item.title%></h3>
+                        </div>
+                        
+                    <%}) %>
+                    <% data.recent_topics.forEach(item=>{%>
+                        <div class="topic">
+                            <img src="<%=item.author.avatar_url%>" alt="">
+                            <h3><%=item.title%></h3>
+                        </div>
+                        
+                    <%}) %>
+               </div>
+        
+
+     </div>
+     <script>
+       $(function(){
+            $(".topic").hide();
+           $('.rectent').on('click',function(){
+               $(".topic").hide();
+               $(".replay").show();
+           })
+           $('.fabu').on('click',function(){
+               $(".topic").show();
+               $(".replay").hide();;
+           })
+
+       })
+     </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+html
+    head
+        meta(charset="utf-8")
+        link(rel="stylesheet", href="style.css")
+        style.
+            .col{
+                color:red;
+            }
+            .size{
+                font-size:20px;
+            }
+    body
+        div.col.size#abc
+            span=name
+        ul.list
+            each item in arr[0].sugGoods[0].skus             
+                li=item.sugGoodsName
+    script.
+        window.onload=()=>{
+            alter(1);
+        }
+    script(src="jq.js")
